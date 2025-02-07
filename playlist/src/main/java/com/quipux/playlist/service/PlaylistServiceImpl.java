@@ -42,15 +42,11 @@ public class PlaylistServiceImpl implements PlaylistService{
 
         List<SongEntity> songsSaved=songRepository.saveAll(songsToSave);
 
-        List<SongEntity> allSongs = Stream.concat(existingSongs.stream(), songsSaved.stream())
-                .collect(Collectors.toList());
-
+        List<SongEntity> allSongs = Stream.concat(existingSongs.stream(), songsSaved.stream()).toList();
 
         PlaylistEntity playlistToSave = palylistMapper.toEntity(playlist);
         playlistToSave.setSongs(allSongs);
-
-        return palylistMapper.toDomain(
-                playlistRepository.save(playlistToSave));
+        return palylistMapper.toDomain(playlistRepository.save(playlistToSave));
     }
 
     @Override

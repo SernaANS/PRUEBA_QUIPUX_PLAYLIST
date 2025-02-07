@@ -13,5 +13,7 @@ public interface SongEntityMapper {
 
     List<SongEntity> toEntity(List<Song> model);
 
+    List<Song> toModel (List<SongEntity> entity);
+    Song toModel (SongEntity entity);
 
 }

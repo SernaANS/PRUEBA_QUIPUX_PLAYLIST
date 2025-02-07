@@ -21,6 +21,6 @@ public class PlaylistRequest {
 
     @NotNull
     @JsonProperty("canciones")
-    private List<@Valid SongRequest> songRequests = new ArrayList<>();
+    private List<@Valid SongRequest> songs = new ArrayList<>();
 
 }

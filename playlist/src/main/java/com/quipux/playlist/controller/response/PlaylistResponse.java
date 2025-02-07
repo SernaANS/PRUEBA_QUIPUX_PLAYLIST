@@ -18,6 +18,6 @@ public class PlaylistResponse {
     private String description;
 
     @JsonProperty("canciones")
-    private List<SongResponse> songRequests = new ArrayList<>();
+    private List<SongResponse> songs = new ArrayList<>();
 
 }

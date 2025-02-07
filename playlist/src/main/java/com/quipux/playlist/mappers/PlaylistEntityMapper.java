@@ -8,8 +8,10 @@ import java.util.List;
 
 @Mapper(componentModel="spring")
 public interface PlaylistEntityMapper {
-    Playlist toDomain(PlaylistEntity model);
-    List<Playlist> toDomain(List<PlaylistEntity> model);
+    Playlist toDomain(PlaylistEntity entity);
+    List<Playlist> toDomain(List<PlaylistEntity> entity);
 
-    PlaylistEntity toEntity(Playlist entity);
+    PlaylistEntity toEntity(Playlist model);
+    List<PlaylistEntity> toEntity(List<Playlist> model);
+
 }
