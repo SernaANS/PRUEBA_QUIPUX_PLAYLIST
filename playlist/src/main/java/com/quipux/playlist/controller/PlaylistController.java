@@ -1,12 +1,16 @@
 package com.quipux.playlist.controller;
 
+import com.quipux.playlist.controller.mappers.PlaylistRequestMapper;
 import com.quipux.playlist.controller.request.PlaylistRequest;
+import com.quipux.playlist.controller.response.PlaylistResponse;
 import com.quipux.playlist.service.PlaylistService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("${request-mapping.controller.playlist}")
 @RestController
@@ -15,22 +19,29 @@ public class PlaylistController {
 
     private PlaylistService playlistService;
 
+    private PlaylistRequestMapper playlistRequestMapper;
+
     @PostMapping
-    public ResponseEntity<Object>  savePlaylist(@RequestBody @Valid PlaylistRequest playListRequest){
-
-        playlistService.save(playlistService);
-
-        return new ResponseEntity<>(null,HttpStatus.CREATED);
+    public ResponseEntity<PlaylistResponse>  savePlaylist(@RequestBody @Valid PlaylistRequest playListRequest){
+        return new ResponseEntity<>(
+                playlistRequestMapper.toResponse(
+                        playlistService.save(
+                                playlistRequestMapper.toModel(playListRequest)))
+                ,HttpStatus.CREATED);
     }
+
     @GetMapping
-    public ResponseEntity<Object> getAll(){
-        //Sernice
-        return ResponseEntity.ok(playlistService.getAllPlaylists());
+    public ResponseEntity<List<PlaylistResponse>> getAll(){
+        return ResponseEntity.ok(
+                playlistRequestMapper.toResponse(
+                        playlistService.getAllPlaylists())
+        );
     }
+
     @GetMapping("/{listName}")
-    public ResponseEntity<Object>  getByName(@PathVariable String listName){
-        //Service
-        return ResponseEntity.ok(playlistService.getPlaylistByName(listName));
+    public ResponseEntity<PlaylistResponse>  getByName(@PathVariable String listName){
+        return ResponseEntity.ok(
+                playlistRequestMapper.toResponse(playlistService.getPlaylistByName(listName)));
     }
 
     @DeleteMapping("/{listName}")

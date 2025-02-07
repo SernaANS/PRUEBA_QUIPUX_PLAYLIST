@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PlaylistService {
 
-    Playlist  save(PlaylistService playlistService);
+    Playlist  save(Playlist playlist);
 
     List<Playlist> getAllPlaylists();
 
