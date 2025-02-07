@@ -1,1 +1,43 @@
-<p>list-songs works!</p>
+<div class="container">
+    <h2 class="jumbotron text-center mb-5">SONGS</h2>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-light" style="border: 1px solid #6c757d;" (click)="goBack()">VOLVER</button>
+           
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{playlist.nombre}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ playlist.descripcion }}</h6>
+        </div>
+      </div>
+
+
+    <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+            <thead>
+
+                <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Artista</th>
+                    <th scope="col">Álbum</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">Género</th>
+                </tr>
+
+            </thead>
+            <tbody >
+                <tr scope="row" *ngFor="let song of playlist.canciones; let i = index">
+                    <td>{{ song.titulo }}</td>
+                    <td>{{ song.artista }}</td>
+                    <td>{{ song.album }}</td>
+                    <td>{{ song.anno }}</td>
+                    <td>{{ song.genero }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>

@@ -4,6 +4,7 @@ import { ListSongsComponent } from './component/list-songs/list-songs.component'
 import { FormPlaylistComponent } from './component/form-playlist/form-playlist.component';
 import { FormUserComponent } from './component/form-user/form-user.component';
 import { authGuard } from './guard/auth.service';
+import { ListPlaylistComponent } from './component/list-playlist/list-playlist.component';
 
 
 export const routes: Routes = [
@@ -12,6 +13,12 @@ export const routes: Routes = [
   {
     path: 'list-songs', 
     component: ListSongsComponent,
+    canActivate: [],
+    data: { title: 'List Songs' }
+  },
+  {
+    path: 'list-playlist', 
+    component: ListPlaylistComponent,
     canActivate: [authGuard]
   },
   {

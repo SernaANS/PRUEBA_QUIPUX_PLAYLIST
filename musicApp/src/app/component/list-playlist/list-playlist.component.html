@@ -1,0 +1,53 @@
+  <div class="container">
+    <h2 class="jumbotron text-center mb-5">PLAYLIST</h2>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-light" style="border: 1px solid #6c757d;" (click)="clearSearch()">LIMPIAR</button>
+            <button class="btn btn-light" style="border: 1px solid #6c757d;" (click)="filterPlaylists()">BUSCAR</button>
+        </div>
+        <input type="text" class="form-control" placeholder="NOMBRE" aria-label="Username" aria-describedby="basic-addon1" 
+        [(ngModel)]="searchTerm">
+      </div>
+
+    
+    
+
+    <div class="table-responsive custom-table-responsive">
+
+      <table class="table custom-table">
+        <thead>
+          <tr>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Cant. Songs</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let playlist of filteredPlaylists">
+          <tr scope="row" >
+            <td>{{ playlist.nombre }}</td>
+            <td>
+                {{ playlist.descripcion }}
+            </td>
+            <td>{{playlist.canciones.length}}</td>
+            <td>
+                <div class="d-flex align-items-center">
+                <button class="btn btn-success btn-sm mr-2" (click)="goToListSongs(playlist)">
+                  ver
+                </button>
+    
+                <button class="btn btn-danger btn-sm" (click)="deletePlaylist(playlist.nombre)">
+                  delete
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="spacer"><td colspan="100"></td></tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
